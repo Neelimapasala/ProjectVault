@@ -1,0 +1,1911 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>ProjectVault - AI-Powered Final Year Project Generator & Innovation Platform</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+<style>
+:root {
+  --bg: #0A0E17;
+  --bg2: #111827;
+  --card: #1A1F2E;
+  --accent: #F97316;
+  --accent2: #FF8C42;
+  --accent3: #14B8A6;
+  --dark: #F3F4F6;
+  --mid: #D1D5DB;
+  --light: #9CA3AF;
+  --border: #2D3748;
+  --shadow: 0 8px 32px rgba(249,115,22,0.15);
+  --radius: 20px;
+  --font-head: 'Syne', sans-serif;
+  --font-body: 'DM Sans', sans-serif;
+  --font-mono: 'Space Grotesk', monospace;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-body);
+  background: var(--bg);
+  color: var(--dark);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+body::before {
+  content:'';
+  position:fixed; inset:0; z-index:0;
+  background:
+    radial-gradient(ellipse 80% 60% at 80% 10%, rgba(255,140,66,0.12) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 50% at 10% 80%, rgba(249,115,22,0.10) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.wrap { position:relative; z-index:1; }
+
+/* NAVBAR */
+nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(17,24,39,0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 32px;
+  display: flex; align-items: center; justify-content: space-between;
+  height: 70px;
+}
+
+.nav-logo {
+  font-family: var(--font-mono);
+  font-size: 1.6rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  letter-spacing: -0.03em;
+}
+
+.nav-links {
+  display: flex;
+  gap: 32px;
+  list-style: none;
+  flex: 1;
+  margin-left: 48px;
+}
+
+.nav-links a {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--light);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover { color: var(--accent); }
+
+.nav-cta {
+  background: linear-gradient(95deg, var(--accent), var(--accent2));
+  color: white;
+  border: none;
+  border-radius: 50px;
+  padding: 10px 26px;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 4px 16px rgba(249,115,22,0.3);
+}
+
+.nav-cta:hover { transform: translateY(-2px); box-shadow: 0 6px 24px rgba(249,115,22,0.4); }
+
+/* HERO */
+.hero {
+  padding: 100px 32px 80px;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(249,115,22,0.12);
+  border: 1.5px solid var(--accent);
+  border-radius: 50px;
+  padding: 8px 18px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+
+.hero h1 {
+  font-family: var(--font-head);
+  font-size: clamp(2.4rem, 5vw, 3.6rem);
+  font-weight: 800;
+  line-height: 1.1;
+  color: var(--dark);
+  margin-bottom: 20px;
+  letter-spacing: -0.02em;
+}
+
+.hero h1 em { color: var(--accent); font-style: normal; }
+
+.hero p {
+  color: var(--light);
+  line-height: 1.8;
+  font-size: 1.05rem;
+  margin-bottom: 32px;
+}
+
+.hero-btns {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.btn-primary {
+  background: linear-gradient(95deg, var(--accent), var(--accent2));
+  color: white;
+  border: none;
+  border-radius: 50px;
+  padding: 14px 32px;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 6px 24px rgba(249,115,22,0.3);
+}
+
+.btn-primary:hover { transform: translateY(-3px); box-shadow: 0 8px 32px rgba(249,115,22,0.4); }
+
+.btn-outline {
+  background: transparent;
+  color: var(--accent);
+  border: 2px solid var(--accent);
+  border-radius: 50px;
+  padding: 12px 30px;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-outline:hover { background: var(--accent); color: white; }
+
+/* STATS BAR */
+.stats-bar {
+  background: linear-gradient(135deg, rgba(249,115,22,0.15), rgba(20,184,166,0.1));
+  padding: 30px 32px;
+  border: 1px solid var(--border);
+}
+
+.stats-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  gap: 0;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.stat-item {
+  text-align: center;
+  padding: 12px 20px;
+}
+
+.stat-num {
+  font-family: var(--font-head);
+  font-size: 2.2rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  display: block;
+}
+
+.stat-lbl {
+  font-size: 0.85rem;
+  color: var(--light);
+  font-weight: 500;
+}
+
+/* TABS SECTION */
+.tabs-container {
+  border-bottom: 2px solid var(--border);
+  margin: 40px 0 0;
+  overflow-x: auto;
+}
+
+.tabs-nav {
+  display: flex;
+  gap: 8px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+.tab-btn {
+  background: transparent;
+  border: none;
+  color: var(--light);
+  padding: 16px 20px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+  transition: all 0.2s;
+  font-family: var(--font-body);
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.tab-btn:hover { color: var(--accent); }
+
+.tab-btn.active {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+
+.tab-content {
+  display: none;
+  animation: fadeIn 0.3s ease;
+  padding: 40px 32px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.tab-content.active { display: block; }
+
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+/* SECTION */
+section {
+  padding: 60px 32px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.section-label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+  margin-bottom: 12px;
+}
+
+.section-title {
+  font-family: var(--font-head);
+  font-size: clamp(1.8rem, 3vw, 2.8rem);
+  font-weight: 800;
+  color: var(--dark);
+  line-height: 1.15;
+  margin-bottom: 12px;
+  letter-spacing: -0.02em;
+}
+
+.section-sub {
+  color: var(--light);
+  font-size: 1rem;
+  line-height: 1.7;
+  max-width: 600px;
+  margin-bottom: 32px;
+}
+
+/* CARDS */
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 28px;
+  box-shadow: var(--shadow);
+  transition: all 0.25s;
+  backdrop-filter: blur(4px);
+}
+
+.card:hover {
+  border-color: var(--accent);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 48px rgba(249,115,22,0.2);
+}
+
+/* FORM */
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+}
+
+.form-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 30px;
+  box-shadow: var(--shadow);
+}
+
+.form-card h3 {
+  font-family: var(--font-head);
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 24px;
+  color: var(--dark);
+}
+
+.form-row {
+  margin-bottom: 18px;
+}
+
+label {
+  display: block;
+  font-size: 0.87rem;
+  font-weight: 600;
+  color: var(--mid);
+  margin-bottom: 8px;
+}
+
+select, input[type=text], textarea {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1.5px solid var(--border);
+  border-radius: 12px;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--dark);
+  background: rgba(26,31,46,0.6);
+  transition: border 0.2s, background 0.2s;
+  outline: none;
+}
+
+select:focus, input:focus, textarea:focus {
+  border-color: var(--accent);
+  background: var(--card);
+  box-shadow: 0 0 0 3px rgba(249,115,22,0.1);
+}
+
+textarea { resize: vertical; min-height: 100px; }
+
+.gen-btn {
+  width: 100%;
+  margin-top: 12px;
+  background: linear-gradient(95deg, var(--accent), var(--accent2));
+  color: white;
+  border: none;
+  border-radius: 12px;
+  padding: 16px;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 4px 16px rgba(249,115,22,0.3);
+}
+
+.gen-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 24px rgba(249,115,22,0.4); }
+
+.gen-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* RESULT CARD */
+.result-card {
+  background: linear-gradient(135deg, rgba(249,115,22,0.08), rgba(20,184,166,0.05));
+  border: 2px solid var(--accent);
+  border-radius: var(--radius);
+  padding: 32px;
+  box-shadow: 0 8px 40px rgba(249,115,22,0.15);
+}
+
+.result-card h4 {
+  font-family: var(--font-head);
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--dark);
+  margin-bottom: 16px;
+}
+
+.result-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.tag {
+  display: inline-block;
+  padding: 6px 16px;
+  border-radius: 30px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  background: rgba(249,115,22,0.18);
+  color: var(--accent);
+}
+
+.tag.green { background: rgba(20,184,166,0.18); color: var(--accent3); }
+.tag.yellow { background: rgba(251,191,36,0.18); color: #FBBF24; }
+
+.result-section {
+  margin-bottom: 18px;
+}
+
+.result-section h5 {
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--accent);
+  margin-bottom: 8px;
+}
+
+.result-section p, .result-section ul {
+  color: var(--mid);
+  font-size: 0.95rem;
+  line-height: 1.8;
+}
+
+.result-section ul {
+  padding-left: 20px;
+}
+
+.result-section ul li {
+  margin-bottom: 6px;
+}
+
+.novelty-bar {
+  height: 8px;
+  border-radius: 10px;
+  background: var(--border);
+  margin-top: 8px;
+  overflow: hidden;
+}
+
+.novelty-fill {
+  height: 100%;
+  border-radius: 10px;
+  background: linear-gradient(90deg, var(--accent), var(--accent2));
+  transition: width 1s ease;
+}
+
+.action-row {
+  display: flex;
+  gap: 12px;
+  margin-top: 24px;
+  flex-wrap: wrap;
+}
+
+.action-btn {
+  padding: 10px 22px;
+  border-radius: 30px;
+  font-size: 0.87rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1.5px solid var(--border);
+  background: transparent;
+  color: var(--light);
+  transition: all 0.2s;
+  font-family: var(--font-body);
+}
+
+.action-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: rgba(249,115,22,0.1);
+}
+
+.action-btn.primary {
+  background: var(--accent);
+  color: white;
+  border-color: var(--accent);
+}
+
+/* GRID LAYOUTS */
+.grid-2, .grid-3, .grid-4 {
+  display: grid;
+  gap: 24px;
+  margin-top: 32px;
+}
+
+.grid-2 { grid-template-columns: repeat(2, 1fr); }
+.grid-3 { grid-template-columns: repeat(3, 1fr); }
+.grid-4 { grid-template-columns: repeat(4, 1fr); }
+
+.idea-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+  cursor: pointer;
+  transition: all 0.25s;
+}
+
+.idea-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 32px rgba(249,115,22,0.2);
+}
+
+.idea-icon { font-size: 2.4rem; margin-bottom: 12px; }
+
+.idea-card h4 {
+  font-family: var(--font-head);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--dark);
+  margin-bottom: 10px;
+  line-height: 1.3;
+}
+
+.idea-card p {
+  font-size: 0.87rem;
+  color: var(--light);
+  line-height: 1.6;
+}
+
+.idea-tags {
+  display: flex;
+  gap: 6px;
+  margin-top: 12px;
+  flex-wrap: wrap;
+}
+
+.mini-tag {
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 20px;
+  background: rgba(249,115,22,0.2);
+  color: var(--accent);
+}
+
+/* LOADING */
+.loading-text {
+  color: var(--light);
+  text-align: center;
+  padding: 60px 20px;
+  font-size: 0.95rem;
+}
+
+.spinner {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 3px solid rgba(249,115,22,0.3);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* FLOATING CHATBOT */
+.chat-fab {
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+  z-index: 9999;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  box-shadow: 0 8px 32px rgba(249,115,22,0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.25s;
+  border: none;
+  font-size: 1.6rem;
+  color: white;
+  animation: pulse 3s infinite;
+}
+
+.chat-fab:hover { transform: scale(1.12) translateY(-4px); }
+
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 8px 32px rgba(249,115,22,0.4); }
+  50% { box-shadow: 0 8px 48px rgba(249,115,22,0.6); }
+}
+
+.chat-panel {
+  position: fixed;
+  bottom: 110px;
+  right: 32px;
+  z-index: 9998;
+  width: 380px;
+  height: 560px;
+  background: var(--card);
+  border-radius: 24px;
+  box-shadow: 0 16px 64px rgba(0,0,0,0.3);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  transform: scale(0.8) translateY(30px);
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s cubic-bezier(0.34,1.56,0.64,1);
+  transform-origin: bottom right;
+}
+
+.chat-panel.open {
+  transform: scale(1) translateY(0);
+  opacity: 1;
+  pointer-events: all;
+}
+
+.chat-header {
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  padding: 18px 20px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.chat-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+}
+
+.chat-info h4 {
+  color: white;
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: 1.05rem;
+  margin-bottom: 2px;
+}
+
+.chat-info p {
+  color: rgba(255,255,255,0.85);
+  font-size: 0.75rem;
+}
+
+.chat-close {
+  margin-left: auto;
+  background: none;
+  border: none;
+  color: rgba(255,255,255,0.8);
+  font-size: 1.3rem;
+  cursor: pointer;
+  padding: 0;
+}
+
+.chat-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.chat-messages::-webkit-scrollbar { width: 5px; }
+.chat-messages::-webkit-scrollbar-thumb { background: var(--border); border-radius: 5px; }
+
+.msg {
+  max-width: 85%;
+  display: flex;
+  flex-direction: column;
+}
+
+.msg-bot { align-self: flex-start; }
+.msg-user { align-self: flex-end; }
+
+.msg-bubble {
+  padding: 12px 16px;
+  border-radius: 14px;
+  font-size: 0.87rem;
+  line-height: 1.6;
+}
+
+.msg-bot .msg-bubble {
+  background: var(--border);
+  color: var(--dark);
+}
+
+.msg-user .msg-bubble {
+  background: var(--accent);
+  color: white;
+}
+
+.chat-input-area {
+  padding: 16px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  gap: 10px;
+}
+
+.chat-input {
+  flex: 1;
+  border: 1.5px solid var(--border);
+  border-radius: 30px;
+  padding: 10px 16px;
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  outline: none;
+  background: rgba(26,31,46,0.6);
+  color: var(--dark);
+}
+
+.chat-input:focus {
+  border-color: var(--accent);
+  background: var(--card);
+}
+
+.chat-send {
+  background: var(--accent);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: all 0.2s;
+}
+
+.chat-send:hover { background: var(--accent2); }
+
+/* TITLE SUGGESTIONS */
+.suggestions-box {
+  background: linear-gradient(135deg, rgba(249,115,22,0.1), rgba(20,184,166,0.08));
+  border: 1.5px solid var(--accent);
+  border-radius: var(--radius);
+  padding: 24px;
+  margin-top: 20px;
+}
+
+.suggestions-box h4 {
+  font-family: var(--font-head);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--dark);
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.suggestion-item {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 14px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.suggestion-item:hover {
+  border-color: var(--accent);
+  background: rgba(249,115,22,0.1);
+}
+
+.suggestion-title {
+  font-weight: 600;
+  color: var(--dark);
+  margin-bottom: 6px;
+}
+
+.suggestion-desc {
+  font-size: 0.85rem;
+  color: var(--light);
+}
+
+/* CODE BLOCK */
+.code-block {
+  background: rgba(0,0,0,0.3);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px;
+  font-family: 'Courier New', monospace;
+  font-size: 0.85rem;
+  color: var(--accent);
+  overflow-x: auto;
+  margin-top: 12px;
+}
+
+.code-copy-btn {
+  padding: 6px 12px;
+  background: var(--accent);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 8px;
+}
+
+/* FOOTER */
+footer {
+  background: linear-gradient(135deg, rgba(17,24,39,0.8), rgba(26,31,46,0.8));
+  border-top: 1px solid var(--border);
+  padding: 48px 32px 28px;
+  text-align: center;
+}
+
+.footer-text {
+  max-width: 1200px;
+  margin: 0 auto;
+  color: var(--light);
+  font-size: 0.87rem;
+  line-height: 1.8;
+}
+
+.footer-text strong { color: var(--accent); }
+.footer-text a { color: var(--accent); text-decoration: none; }
+.footer-text a:hover { text-decoration: underline; }
+
+/* RESPONSIVE */
+@media (max-width: 1000px) {
+  .hero { grid-template-columns: 1fr; gap: 40px; }
+  .form-grid { grid-template-columns: 1fr; }
+  .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr 1fr; }
+  nav { padding: 0 16px; }
+  .nav-links { display: none; }
+  .chat-panel { width: calc(100vw - 40px); right: 20px; }
+}
+
+@media (max-width: 640px) {
+  .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+  .stats-inner { flex-direction: column; }
+  section, .tab-content { padding: 40px 18px; }
+  nav { height: auto; flex-direction: column; gap: 12px; }
+  .tabs-nav { gap: 6px; }
+  .tab-btn { padding: 10px 14px; font-size: 0.85rem; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- NAVBAR -->
+<nav>
+  <div class="nav-logo"><i class="fas fa-vault"></i> ProjectVault</div>
+  <ul class="nav-links">
+    <li><a href="#tabs-generate"><i class="fas fa-magic"></i> Generate</a></li>
+    <li><a href="#tabs-gallery"><i class="fas fa-images"></i> Gallery</a></li>
+    <li><a href="#tabs-codegen"><i class="fas fa-code"></i> Code Gen</a></li>
+    <li><a href="#tabs-insights"><i class="fas fa-chart-line"></i> Insights</a></li>
+    <li><a href="#tabs-checker"><i class="fas fa-search"></i> Check</a></li>
+  </ul>
+  <button class="nav-cta" onclick="document.getElementById('tabs-container').scrollIntoView({behavior:'smooth'})">
+    <i class="fas fa-rocket"></i> Start Now
+  </button>
+</nav>
+
+<!-- HERO -->
+<section style="padding-top: 80px; padding-bottom: 40px;">
+  <div class="hero">
+    <div>
+      <div class="hero-badge"><i class="fas fa-globe"></i> Global Academic Innovation Platform</div>
+      <h1>Create <em>Truly Original</em> Final Year Projects<br>With <em>AI-Powered Guidance</em></h1>
+      <p>Stop searching endlessly. ProjectVault generates novel, globally-verified project ideas for all degree levels and disciplines — with AI code generation, industry alignment, and complete roadmaps.</p>
+      <div class="hero-btns">
+        <button class="btn-primary" onclick="document.getElementById('tabs-container').scrollIntoView({behavior:'smooth'})">
+          <i class="fas fa-rocket"></i> Generate Project
+        </button>
+        <button class="btn-outline" onclick="document.getElementById('tabs-gallery').scrollIntoView({behavior:'smooth'})">
+          <i class="fas fa-images"></i> Browse Ideas
+        </button>
+      </div>
+    </div>
+    <div style="text-align: center; font-size: 4rem; opacity: 0.8;">
+      <i class="fas fa-laptop-code"></i>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="stats-inner">
+    <div class="stat-item">
+      <span class="stat-num">250+</span>
+      <span class="stat-lbl">Departments</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">50+</span>
+      <span class="stat-lbl">Degree Types</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">180</span>
+      <span class="stat-lbl">Countries</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">∞</span>
+      <span class="stat-lbl">AI Ideas</span>
+    </div>
+  </div>
+</div>
+
+<!-- TABS CONTAINER -->
+<div id="tabs-container" class="tabs-container">
+  <div class="tabs-nav">
+    <button class="tab-btn active" data-tab="generate">
+      <i class="fas fa-magic"></i> Generate Idea
+    </button>
+    <button class="tab-btn" data-tab="gallery">
+      <i class="fas fa-images"></i> Gallery
+    </button>
+    <button class="tab-btn" data-tab="codegen">
+      <i class="fas fa-code"></i> AI Code Generator
+    </button>
+    <button class="tab-btn" data-tab="insights">
+      <i class="fas fa-chart-line"></i> Market Insights
+    </button>
+    <button class="tab-btn" data-tab="checker">
+      <i class="fas fa-search"></i> Check Originality
+    </button>
+    <button class="tab-btn" data-tab="dashboard">
+      <i class="fas fa-bookmark"></i> My Projects
+    </button>
+  </div>
+</div>
+
+<!-- TAB: GENERATE -->
+<div id="generate" class="tab-content active">
+  <div style="max-width: 1200px; margin: 0 auto;">
+    <div class="section-label"><i class="fas fa-robot"></i> AI Idea Generator</div>
+    <h2 class="section-title">Generate Your <em>Original</em> Project Idea</h2>
+    <p class="section-sub">Fill your complete academic profile and let AI create a unique, industry-aligned project tailored to your field.</p>
+
+    <div class="form-grid">
+      <div class="form-card">
+        <h3><i class="fas fa-user-graduate"></i> Your Academic Profile</h3>
+        
+        <div class="form-row">
+          <label><i class="fas fa-graduation-cap"></i> Degree Level</label>
+          <select id="degree">
+            <optgroup label="🎓 Undergraduate">
+              <option>BE/BTech (Engineering)</option>
+              <option>BSc (Science)</option>
+              <option>BA (Arts)</option>
+              <option>BCom (Commerce)</option>
+              <option>BCA (Computer Applications)</option>
+              <option>BArch (Architecture)</option>
+              <option>BPharm (Pharmacy)</option>
+              <option>LLB (Law)</option>
+            </optgroup>
+            <optgroup label="📚 Postgraduate">
+              <option>ME/MTech (Engineering)</option>
+              <option>MSc (Science)</option>
+              <option>MBA (Business)</option>
+              <option>MCA (Computer Applications)</option>
+              <option>LLM (Law)</option>
+            </optgroup>
+            <optgroup label="🔬 Research">
+              <option>PhD (Doctor of Philosophy)</option>
+              <option>Research Fellow</option>
+            </optgroup>
+          </select>
+        </div>
+
+        <div class="form-row">
+          <label><i class="fas fa-building"></i> Department / Field</label>
+          <select id="department">
+            <optgroup label="💻 Engineering & Technology">
+              <option>Computer Science & Engineering</option>
+              <option>Information Technology</option>
+              <option>Electronics & Communication</option>
+              <option>Electrical Engineering</option>
+              <option>Mechanical Engineering</option>
+              <option>Civil Engineering</option>
+              <option>Chemical Engineering</option>
+              <option>Biomedical Engineering</option>
+              <option>Aerospace Engineering</option>
+              <option>Robotics & Automation</option>
+              <option>AI & Machine Learning</option>
+              <option>Data Science</option>
+              <option>Cybersecurity</option>
+              <option>Software Engineering</option>
+            </optgroup>
+            <optgroup label="🔬 Sciences">
+              <option>Physics</option>
+              <option>Chemistry</option>
+              <option>Biology</option>
+              <option>Biotechnology</option>
+              <option>Environmental Science</option>
+              <option>Mathematics</option>
+              <option>Microbiology</option>
+            </optgroup>
+            <optgroup label="💼 Business & Management">
+              <option>MBA / Management</option>
+              <option>Finance & Banking</option>
+              <option>Economics</option>
+              <option>Marketing</option>
+            </optgroup>
+            <optgroup label="⚕️ Health & Medicine">
+              <option>Medicine (MBBS)</option>
+              <option>Pharmacy</option>
+              <option>Nursing</option>
+            </optgroup>
+          </select>
+        </div>
+
+        <div class="form-row">
+          <label><i class="fas fa-compass"></i> Preferred Domain (Optional)</label>
+          <input type="text" id="domain" placeholder="e.g., Healthcare, FinTech, Climate Tech..." />
+        </div>
+
+        <div class="form-row">
+          <label><i class="fas fa-code"></i> Technologies You Know</label>
+          <input type="text" id="tech" placeholder="e.g., Python, React, Arduino, TensorFlow..." />
+        </div>
+
+        <div class="form-row">
+          <label><i class="fas fa-brain"></i> AI/ML Involvement</label>
+          <select id="ai-level">
+            <option value="heavy">Heavy AI/ML (Core of project)</option>
+            <option value="moderate">Moderate AI (One AI component)</option>
+            <option value="minimal">Minimal / No AI</option>
+          </select>
+        </div>
+
+        <div class="form-row">
+          <label><i class="fas fa-cube"></i> Project Type</label>
+          <select id="ptype">
+            <option value="Software">💻 Software Application</option>
+            <option value="Hardware">🔧 Hardware/IoT</option>
+            <option value="Research">📄 Research/Literature</option>
+            <option value="App">📱 Mobile App</option>
+            <option value="Hybrid">🔗 Hybrid (Hardware + Software)</option>
+          </select>
+        </div>
+
+        <div class="form-row">
+          <label><i class="fas fa-comment"></i> Additional Context</label>
+          <textarea id="context" placeholder="Describe any specific problem, research gap, or unique requirement..."></textarea>
+        </div>
+
+        <button class="gen-btn" id="gen-btn" onclick="generateIdea()">
+          <i class="fas fa-magic"></i> Generate Original Project Idea
+        </button>
+      </div>
+
+      <!-- RESULT AREA -->
+      <div>
+        <div id="result-placeholder" class="card" style="text-align: center; padding: 50px 20px; min-height: 600px; display: flex; flex-direction: column; justify-content: center;">
+          <div style="font-size: 4rem; margin-bottom: 20px;"><i class="fas fa-lightbulb"></i></div>
+          <h3 style="font-family: var(--font-head); font-size: 1.3rem; margin-bottom: 12px;">Your Generated Idea</h3>
+          <p style="color: var(--light); font-size: 0.95rem;">Fill the form and click generate to get your AI-created project with novelty score, roadmap, and industry alignment.</p>
+        </div>
+
+        <div id="result-loading" style="display: none;" class="card" style="padding: 60px 20px;">
+          <div class="loading-text">
+            <div class="spinner" style="margin: 0 auto 20px;"></div>
+            <div style="font-size: 1.05rem; margin-bottom: 8px;">Generating your unique project...</div>
+            <div style="color: var(--light); font-size: 0.85rem;">Analyzing global research • Checking novelty • Building roadmap</div>
+          </div>
+        </div>
+
+        <div id="result-area" style="display: none;">
+          <div class="result-card" id="result-card"></div>
+          <div id="title-suggestions" class="suggestions-box" style="display: none;">
+            <h4><i class="fas fa-sparkles"></i> Alternative Project Titles</h4>
+            <div id="suggestions-list"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TAB: GALLERY -->
+<div id="gallery" class="tab-content">
+  <div style="max-width: 1200px; margin: 0 auto;">
+    <div class="section-label"><i class="fas fa-star"></i> Showcase Gallery</div>
+    <h2 class="section-title">Pre-Generated Project <em>Ideas</em></h2>
+    <p class="section-sub">Browse curated, original project ideas. Click on any to view details or use as inspiration.</p>
+
+    <div class="grid-3">
+      <div class="idea-card" onclick="loadGalleryIdea('Emotion-Aware Code Reviewer', 'AI tool that analyzes developer frustration patterns')">
+        <div class="idea-icon">🧠</div>
+        <h4>Emotion-Aware Code Reviewer</h4>
+        <p>AI tool that analyzes developer frustration patterns in code and suggests breaks or refactoring strategies.</p>
+        <div class="idea-tags">
+          <span class="mini-tag">CSE</span>
+          <span class="mini-tag">AI/ML</span>
+          <span class="mini-tag">94% Novel</span>
+        </div>
+      </div>
+
+      <div class="idea-card" onclick="loadGalleryIdea('Agricultural Drone Disease Detection', 'Computer vision on drones to detect crop diseases')">
+        <div class="idea-icon">🌾</div>
+        <h4>Agricultural Drone Detection</h4>
+        <p>Computer vision on drones to detect crop diseases early and recommend targeted pesticide spraying.</p>
+        <div class="idea-tags">
+          <span class="mini-tag">AgriE</span>
+          <span class="mini-tag">Hardware</span>
+          <span class="mini-tag">91% Novel</span>
+        </div>
+      </div>
+
+      <div class="idea-card" onclick="loadGalleryIdea('Thermal Infrastructure Monitoring', 'IR thermal imaging system to detect structural defects')">
+        <div class="idea-icon">🏗️</div>
+        <h4>Thermal Infrastructure Monitoring</h4>
+        <p>IR thermal imaging system to detect structural defects in bridges and buildings before catastrophic failure.</p>
+        <div class="idea-tags">
+          <span class="mini-tag">Civil</span>
+          <span class="mini-tag">IoT</span>
+          <span class="mini-tag">88% Novel</span>
+        </div>
+      </div>
+
+      <div class="idea-card" onclick="loadGalleryIdea('Gig Worker Financial Wellness Platform', 'Fintech app designed for gig workers')">
+        <div class="idea-icon">💰</div>
+        <h4>Gig Worker Financial Wellness</h4>
+        <p>Fintech app designed specifically for gig workers to manage irregular incomes and plan finances.</p>
+        <div class="idea-tags">
+          <span class="mini-tag">MBA</span>
+          <span class="mini-tag">FinTech</span>
+          <span class="mini-tag">92% Novel</span>
+        </div>
+      </div>
+
+      <div class="idea-card" onclick="loadGalleryIdea('Water Quality Monitoring Network', 'IoT sensor network for rural water bodies')">
+        <div class="idea-icon">💧</div>
+        <h4>Water Quality Monitoring</h4>
+        <p>IoT sensor network for rural water bodies detecting contamination and alerting authorities in real-time.</p>
+        <div class="idea-tags">
+          <span class="mini-tag">Civil/Env</span>
+          <span class="mini-tag">IoT</span>
+          <span class="mini-tag">89% Novel</span>
+        </div>
+      </div>
+
+      <div class="idea-card" onclick="loadGalleryIdea('Neuromorphic AI Chip Design', 'Research on neuromorphic processors')">
+        <div class="idea-icon">🖥️</div>
+        <h4>Neuromorphic AI Chip Design</h4>
+        <p>Research on designing bio-inspired neuromorphic processors for ultra-low-power edge AI inference.</p>
+        <div class="idea-tags">
+          <span class="mini-tag">ECE</span>
+          <span class="mini-tag">Research</span>
+          <span class="mini-tag">96% Novel</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TAB: CODE GENERATOR -->
+<div id="codegen" class="tab-content">
+  <div style="max-width: 1200px; margin: 0 auto;">
+    <div class="section-label"><i class="fas fa-code"></i> AI Code Generator</div>
+    <h2 class="section-title">Generate <em>Starter Code</em> for Your Project</h2>
+    <p class="section-sub">Provide project details and get boilerplate code, architecture suggestions, and implementation guidance.</p>
+
+    <div class="form-grid">
+      <div class="form-card">
+        <h3><i class="fas fa-keyboard"></i> Code Requirements</h3>
+        
+        <div class="form-row">
+          <label><i class="fas fa-cube"></i> Project Name</label>
+          <input type="text" id="code-project-name" placeholder="e.g., Disease Detection API" />
+        </div>
+
+        <div class="form-row">
+          <label><i class="fas fa-language"></i> Programming Language</label>
+          <select id="code-language">
+            <option>Python (Flask/FastAPI)</option>
+            <option>Python (Django)</option>
+            <option>JavaScript (Node.js)</option>
+            <option>JavaScript (React)</option>
+            <option>Java (Spring Boot)</option>
+            <option>C++ (STL)</option>
+            <option>C# (ASP.NET)</option>
+            <option>Go (Gin)</option>
+            <option>Rust (Actix)</option>
+            <option>PHP (Laravel)</option>
+          </select>
+        </div>
+
+        <div class="form-row">
+          <label><i class="fas fa-cogs"></i> Project Type</label>
+          <select id="code-type">
+            <option>REST API</option>
+            <option>Web Application</option>
+            <option>Mobile App</option>
+            <option>Machine Learning Model</option>
+            <option>Desktop Application</option>
+            <option>Microservices</option>
+            <option>IoT Firmware</option>
+            <option>CLI Tool</option>
+          </select>
+        </div>
+
+        <div class="form-row">
+          <label><i class="fas fa-list"></i> Key Features (comma-separated)</label>
+          <textarea id="code-features" placeholder="e.g., user authentication, image upload, data export"></textarea>
+        </div>
+
+        <div class="form-row">
+          <label><i class="fas fa-database"></i> Database Requirements</label>
+          <select id="code-database">
+            <option>PostgreSQL</option>
+            <option>MongoDB</option>
+            <option>MySQL</option>
+            <option>Firebase</option>
+            <option>Redis</option>
+            <option>SQLite</option>
+            <option>No Database</option>
+          </select>
+        </div>
+
+        <button class="gen-btn" onclick="generateCode()">
+          <i class="fas fa-code"></i> Generate Code Skeleton
+        </button>
+      </div>
+
+      <div class="card" id="code-result" style="min-height: 600px; display: flex; flex-direction: column; justify-content: center; text-align: center;">
+        <div style="font-size: 3rem; margin-bottom: 12px;"><i class="fas fa-code"></i></div>
+        <p style="color: var(--light);">Fill the form and click generate to get starter code with project structure and key implementations.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TAB: INSIGHTS -->
+<div id="insights" class="tab-content">
+  <div style="max-width: 1200px; margin: 0 auto;">
+    <div class="section-label"><i class="fas fa-chart-bar"></i> Global Insights</div>
+    <h2 class="section-title">Research Trends & <em>Industry Demand</em></h2>
+    <p class="section-sub">AI-powered analysis of what's trending in research and what companies need right now.</p>
+
+    <div class="grid-3" style="margin-top: 40px;">
+      <div class="card">
+        <h4><i class="fas fa-microscope"></i> Emerging Research Areas</h4>
+        <div style="margin-top: 20px;">
+          <div style="padding: 12px; background: var(--border); border-radius: 10px; margin-bottom: 10px;">
+            <div style="color: var(--accent); font-weight: 700;">🧬 Federated Learning in Medical IoT</div>
+            <div style="font-size: 0.85rem; color: var(--light); margin-top: 4px;">Privacy-preserving ML on edge devices</div>
+          </div>
+          <div style="padding: 12px; background: var(--border); border-radius: 10px; margin-bottom: 10px;">
+            <div style="color: var(--accent); font-weight: 700;">🌾 Precision Agriculture with CV</div>
+            <div style="font-size: 0.85rem; color: var(--light); margin-top: 4px;">AI for crop monitoring and yield prediction</div>
+          </div>
+          <div style="padding: 12px; background: var(--border); border-radius: 10px; margin-bottom: 10px;">
+            <div style="color: var(--accent); font-weight: 700;">⚡ Green Energy Forecasting</div>
+            <div style="font-size: 0.85rem; color: var(--light); margin-top: 4px;">Time-series prediction for renewable grids</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h4><i class="fas fa-briefcase"></i> Industry Demands</h4>
+        <div style="margin-top: 20px;">
+          <div style="padding: 12px; background: var(--border); border-radius: 10px; margin-bottom: 10px;">
+            <div style="color: var(--accent3); font-weight: 700;">🔐 Zero-Trust Security</div>
+            <div style="font-size: 0.85rem; color: var(--light); margin-top: 4px;">By: Security Companies ($500Cr+)</div>
+          </div>
+          <div style="padding: 12px; background: var(--border); border-radius: 10px; margin-bottom: 10px;">
+            <div style="color: var(--accent3); font-weight: 700;">🚚 Last-Mile Delivery Optimization</div>
+            <div style="font-size: 0.85rem; color: var(--light); margin-top: 4px;">By: E-commerce & Logistics</div>
+          </div>
+          <div style="padding: 12px; background: var(--border); border-radius: 10px;">
+            <div style="color: var(--accent3); font-weight: 700;">💊 Drug Interaction Prediction</div>
+            <div style="font-size: 0.85rem; color: var(--light); margin-top: 4px;">By: Pharmaceutical Companies</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h4><i class="fas fa-graduation-cap"></i> Top Skills in Demand</h4>
+        <div style="margin-top: 20px;">
+          <ul style="padding-left: 20px; color: var(--light); font-size: 0.9rem;">
+            <li style="margin-bottom: 10px;"><strong style="color: var(--accent);">Python & Data Science</strong> - 98%</li>
+            <li style="margin-bottom: 10px;"><strong style="color: var(--accent);">React / Frontend</strong> - 87%</li>
+            <li style="margin-bottom: 10px;"><strong style="color: var(--accent);">Cloud (AWS/GCP)</strong> - 94%</li>
+            <li style="margin-bottom: 10px;"><strong style="color: var(--accent);">Machine Learning</strong> - 85%</li>
+            <li><strong style="color: var(--accent);">DevOps & Docker</strong> - 79%</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TAB: CHECKER -->
+<div id="checker" class="tab-content">
+  <div style="max-width: 1200px; margin: 0 auto;">
+    <div class="section-label"><i class="fas fa-magnifying-glass"></i> Originality Checker</div>
+    <h2 class="section-title">Is Your Idea <em>Already Built?</em></h2>
+    <p class="section-sub">Get a global originality score by scanning GitHub, research papers, and patent databases.</p>
+
+    <div class="form-grid">
+      <div class="form-card">
+        <h3><i class="fas fa-pencil"></i> Your Project Idea</h3>
+
+        <div class="form-row">
+          <label>Project Title</label>
+          <input type="text" id="check-title" placeholder="e.g., Emotion-Based Music Player using EEG" />
+        </div>
+
+        <div class="form-row">
+          <label>Description</label>
+          <textarea id="check-desc" placeholder="What does your project do? How does it work?"></textarea>
+        </div>
+
+        <div class="form-row">
+          <label>Your Department</label>
+          <input type="text" id="check-dept" placeholder="e.g., CSE, Mechanical, MBA..." />
+        </div>
+
+        <button class="gen-btn" id="check-btn" onclick="checkOriginality()">
+          <i class="fas fa-search"></i> Check Global Uniqueness
+        </button>
+      </div>
+
+      <div class="card" id="checker-result" style="min-height: 400px; display: flex; align-items: center; justify-content: center; text-align: center;">
+        <div>
+          <div style="font-size: 3rem; margin-bottom: 16px;"><i class="fas fa-search"></i></div>
+          <p style="color: var(--light);">Enter your project idea to scan GitHub, research papers, and patents worldwide.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TAB: DASHBOARD -->
+<div id="dashboard" class="tab-content">
+  <div style="max-width: 1200px; margin: 0 auto;">
+    <div class="section-label"><i class="fas fa-bookmark"></i> Personal Dashboard</div>
+    <h2 class="section-title">My Saved <em>Projects</em> & History</h2>
+    <p class="section-sub">Track all your generated ideas with version history, notes, and management options.</p>
+
+    <div class="card" id="saved-projects-list" style="min-height: 300px;">
+      <div style="text-align: center; padding: 60px 20px; color: var(--light);">
+        <div style="font-size: 3rem; margin-bottom: 12px;"><i class="fas fa-folder-open"></i></div>
+        <p>No saved projects yet. Generate one to get started!</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-text">
+    <p style="margin-bottom: 12px;">
+      <strong>ProjectVault</strong> — AI-Powered Final Year Project Generator & Innovation Platform
+    </p>
+    <p>
+      <i class="fas fa-globe"></i> Worldwide Academic Database • <i class="fas fa-rocket"></i> AI-Powered Generation
+      <br>
+      <i class="fas fa-lock"></i> Privacy-First • <i class="fas fa-code"></i> Powered by Groq
+    </p>
+    <p style="margin-top: 16px; font-size: 0.85rem; opacity: 0.8;">
+      © 2025 ProjectVault. Built with ❤️ by <strong><a href="#">Neelimapasala</a></strong><br>
+      Designed to help students worldwide find and build truly original final year projects.
+    </p>
+  </div>
+</footer>
+
+</div><!-- /wrap -->
+
+<!-- FLOATING CHATBOT -->
+<button class="chat-fab" id="chat-fab" onclick="toggleChat()">
+  <i class="fas fa-comments"></i>
+</button>
+
+<div class="chat-panel" id="chat-panel">
+  <div class="chat-header">
+    <div class="chat-avatar">✨</div>
+    <div class="chat-info">
+      <h4>Nova</h4>
+      <p>AI Project Assistant</p>
+    </div>
+    <button class="chat-close" onclick="toggleChat()">✕</button>
+  </div>
+  <div class="chat-messages" id="chat-messages">
+    <div class="msg msg-bot">
+      <div class="msg-bubble">
+        👋 Hey! I'm <strong>Nova</strong>, your AI project assistant. I can help you brainstorm ideas, generate code, check originality, explain research trends, or guide you through your project journey. What can I help with today? 🚀
+      </div>
+    </div>
+  </div>
+  <div class="chat-input-area">
+    <input class="chat-input" id="chat-input" placeholder="Ask me anything..." onkeydown="if(event.key==='Enter') sendChatMsg()" />
+    <button class="chat-send" onclick="sendChatMsg()">➤</button>
+  </div>
+</div>
+
+<script>
+// ========== GROQ API CONFIG - HARDCODED ==========
+const GROQ_API_KEY = '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';
+const GROQ_API_URL = 'https://api.groq.com/openai/v1/chat/completions';
+
+// ========== STATE ==========
+let savedProjects = JSON.parse(localStorage.getItem('pv_projects') || '[]');
+let chatOpen = false;
+
+// ========== GROQ API CALL ==========
+async function callGroq(messages, system = 'You are an expert academic project advisor helping students find original ideas.') {
+  try {
+    const response = await fetch(GROQ_API_URL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${GROQ_API_KEY}`
+      },
+      body: JSON.stringify({
+        model: 'llama-3.3-70b-versatile',
+        messages: [{ role: 'system', content: system }, ...messages],
+        temperature: 0.7,
+        max_tokens: 2800
+      })
+    });
+
+    if (!response.ok) {
+      throw new Error(`API Error ${response.status}`);
+    }
+
+    const data = await response.json();
+    return data.choices[0].message.content;
+  } catch (e) {
+    console.error('Groq API Error:', e);
+    return null;
+  }
+}
+
+// ========== IDEA GENERATION ==========
+async function generateIdea() {
+  const degree = document.getElementById('degree').value;
+  const dept = document.getElementById('department').value;
+  const domain = document.getElementById('domain').value || 'General';
+  const tech = document.getElementById('tech').value || 'Standard tech for field';
+  const aiLevel = document.getElementById('ai-level').value;
+  const ptype = document.getElementById('ptype').value;
+  const ctx = document.getElementById('context').value || 'No additional context';
+
+  const btn = document.getElementById('gen-btn');
+  btn.disabled = true;
+
+  document.getElementById('result-placeholder').style.display = 'none';
+  document.getElementById('result-area').style.display = 'none';
+  document.getElementById('result-loading').style.display = 'block';
+
+  const prompt = `You are an expert academic advisor. Create a COMPLETELY ORIGINAL final year project for a ${degree} student in ${dept}.
+
+Profile: ${domain}, ${tech}, ${aiLevel} AI level, ${ptype}, Context: ${ctx}
+
+Return ONLY valid JSON (no markdown, no extra text):
+{
+  "title": "Project Title",
+  "tagline": "One-line description",
+  "noveltyScore": 85,
+  "problemStatement": "Problem it solves",
+  "solution": "How it solves it",
+  "techStack": ["Tech1", "Tech2"],
+  "aiComponents": ["AI component"],
+  "datasets": ["Dataset"],
+  "roadmapWeeks": ["Week 1-2: Description"],
+  "skillsNeeded": ["Skill"],
+  "industryAlignment": "Industry",
+  "estimatedDuration": "4-5 months",
+  "difficulty": "Intermediate",
+  "costEstimate": 150,
+  "impactStatement": "Real-world benefit"
+}`;
+
+  try {
+    const result = await callGroq([{ role: 'user', content: prompt }]);
+    if (!result) throw new Error('No API response');
+
+    const json = JSON.parse(result.replace(/```json|```/g, '').trim());
+    renderResult(json);
+    generateTitleSuggestions(json.title, dept);
+  } catch (e) {
+    document.getElementById('result-loading').style.display = 'none';
+    document.getElementById('result-placeholder').innerHTML = `
+      <div style="color: #FF6B6B; text-align: center;">
+        <div style="font-size: 3rem; margin-bottom: 12px;">⚠️</div>
+        <div>Error generating idea. Please try again.</div>
+      </div>
+    `;
+    document.getElementById('result-placeholder').style.display = 'block';
+  }
+
+  btn.disabled = false;
+}
+
+function renderResult(idea) {
+  document.getElementById('result-loading').style.display = 'none';
+  document.getElementById('result-area').style.display = 'block';
+
+  document.getElementById('result-card').innerHTML = `
+    <h4><i class="fas fa-lightbulb"></i> ${idea.title}</h4>
+    <div style="font-size: 0.95rem; color: var(--light); margin-bottom: 16px;">"${idea.tagline}"</div>
+
+    <div class="result-meta">
+      <span class="tag">📊 Novelty: ${idea.noveltyScore}%</span>
+      <span class="tag green">⏱️ ${idea.estimatedDuration}</span>
+      <span class="tag yellow">📈 ${idea.difficulty}</span>
+    </div>
+
+    <div class="novelty-bar">
+      <div class="novelty-fill" style="width: ${idea.noveltyScore}%;"></div>
+    </div>
+
+    <div class="result-section">
+      <h5><i class="fas fa-bullseye"></i> Problem Statement</h5>
+      <p>${idea.problemStatement}</p>
+    </div>
+
+    <div class="result-section">
+      <h5><i class="fas fa-lightbulb"></i> Solution</h5>
+      <p>${idea.solution}</p>
+    </div>
+
+    <div class="result-section">
+      <h5><i class="fas fa-wrench"></i> Technology Stack</h5>
+      <p>${(idea.techStack || []).join(' • ')}</p>
+    </div>
+
+    ${idea.aiComponents && idea.aiComponents.length > 0 ? `
+    <div class="result-section">
+      <h5><i class="fas fa-brain"></i> AI/ML Components</h5>
+      <ul>${(idea.aiComponents || []).map(c => `<li>${c}</li>`).join('')}</ul>
+    </div>
+    ` : ''}
+
+    <div class="result-section">
+      <h5><i class="fas fa-database"></i> Data Sources</h5>
+      <ul>${(idea.datasets || []).map(d => `<li>${d}</li>`).join('')}</ul>
+    </div>
+
+    <div class="result-section">
+      <h5><i class="fas fa-map"></i> Development Roadmap</h5>
+      <ul>${(idea.roadmapWeeks || []).map(w => `<li>${w}</li>`).join('')}</ul>
+    </div>
+
+    <div class="result-section">
+      <h5><i class="fas fa-graduation-cap"></i> Skills Needed</h5>
+      <p>${(idea.skillsNeeded || []).join(', ')}</p>
+    </div>
+
+    <div class="result-section">
+      <h5><i class="fas fa-building"></i> Industry Alignment</h5>
+      <p>${idea.industryAlignment}</p>
+    </div>
+
+    <div class="result-section">
+      <h5><i class="fas fa-earth"></i> Real-World Impact</h5>
+      <p>${idea.impactStatement}</p>
+    </div>
+
+    <div class="action-row">
+      <button class="action-btn primary" onclick="saveProject('${idea.title.replace(/'/g, "\\'")}', '${idea.problemStatement.replace(/'/g, "\\'")}', '${idea.difficulty}', ${idea.noveltyScore})">
+        <i class="fas fa-bookmark"></i> Save Project
+      </button>
+      <button class="action-btn" onclick="generateIdea()">
+        <i class="fas fa-redo"></i> Generate Another
+      </button>
+    </div>
+  `;
+
+  window.lastIdea = idea;
+}
+
+async function generateTitleSuggestions(mainTitle, dept) {
+  const prompt = `Given this project title: "${mainTitle}" for a ${dept} student, generate 4 alternative project titles that are similar in concept but different in approach or scope. Return ONLY valid JSON:
+[{"title":"Alternative Title 1","description":"Brief description"},{"title":"Alternative Title 2","description":"Brief description"},{"title":"Alternative Title 3","description":"Brief description"},{"title":"Alternative Title 4","description":"Brief description"}]`;
+
+  try {
+    const result = await callGroq([{ role: 'user', content: prompt }]);
+    if (!result) return;
+
+    const suggestions = JSON.parse(result.replace(/```json|```/g, '').trim());
+    const box = document.getElementById('title-suggestions');
+    const list = document.getElementById('suggestions-list');
+    
+    list.innerHTML = suggestions.map(s => `
+      <div class="suggestion-item" onclick="document.getElementById('check-title').value = '${s.title.replace(/'/g, "\\'")}'; document.getElementById('checker').scrollIntoView({behavior:'smooth'});">
+        <div class="suggestion-title"><i class="fas fa-check"></i> ${s.title}</div>
+        <div class="suggestion-desc">${s.description}</div>
+      </div>
+    `).join('');
+    
+    box.style.display = 'block';
+  } catch (e) {
+    console.log('Title suggestions generation skipped');
+  }
+}
+
+// ========== CODE GENERATION ==========
+async function generateCode() {
+  const projectName = document.getElementById('code-project-name').value;
+  const language = document.getElementById('code-language').value;
+  const projectType = document.getElementById('code-type').value;
+  const features = document.getElementById('code-features').value;
+  const database = document.getElementById('code-database').value;
+
+  if (!projectName) {
+    alert('⚠️ Please enter a project name');
+    return;
+  }
+
+  const resultDiv = document.getElementById('code-result');
+  resultDiv.innerHTML = `
+    <div class="loading-text">
+      <div class="spinner" style="margin: 0 auto 20px;"></div>
+      Generating code skeleton...
+    </div>
+  `;
+
+  const prompt = `Generate a starter code skeleton for:
+Project: ${projectName}
+Language: ${language}
+Type: ${projectType}
+Features: ${features}
+Database: ${database}
+
+Provide:
+1. Project structure/folder organization
+2. Basic boilerplate code (main file with imports)
+3. Key module stubs
+4. Configuration template
+5. Database schema if applicable
+
+Return as a code block with clear comments.`;
+
+  try {
+    const code = await callGroq([{ role: 'user', content: prompt }]);
+    if (!code) throw new Error('No response');
+
+    resultDiv.innerHTML = `
+      <div style="text-align: left;">
+        <h4><i class="fas fa-folder-tree"></i> Project Structure & Starter Code</h4>
+        <div class="code-block">${code.replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/\n/g, '<br>')}</div>
+        <button class="code-copy-btn" onclick="copyCode()"><i class="fas fa-copy"></i> Copy Code</button>
+        <p style="margin-top: 12px; color: var(--light); font-size: 0.85rem;">Save this code as your project's starting point and customize as needed.</p>
+      </div>
+    `;
+    window.lastCode = code;
+  } catch (e) {
+    resultDiv.innerHTML = `<div style="color: #FF6B6B;">❌ Error generating code: ${e.message}</div>`;
+  }
+}
+
+function copyCode() {
+  if (!window.lastCode) return;
+  navigator.clipboard.writeText(window.lastCode);
+  showToast('✅ Code copied to clipboard!');
+}
+
+// ========== PROJECT MANAGEMENT ==========
+function saveProject(title, desc, difficulty, novelty) {
+  const project = {
+    id: Date.now(),
+    title,
+    description: desc.substring(0, 100) + '...',
+    difficulty,
+    noveltyScore: novelty,
+    savedAt: new Date().toISOString()
+  };
+  
+  savedProjects.unshift(project);
+  localStorage.setItem('pv_projects', JSON.stringify(savedProjects));
+  renderSavedProjects();
+  showToast('✅ Project saved to dashboard!');
+}
+
+function renderSavedProjects() {
+  const container = document.getElementById('saved-projects-list');
+  
+  if (savedProjects.length === 0) {
+    container.innerHTML = `
+      <div style="text-align: center; padding: 60px 20px; color: var(--light);">
+        <div style="font-size: 3rem; margin-bottom: 12px;"><i class="fas fa-folder-open"></i></div>
+        <p>No saved projects yet. Generate one to get started!</p>
+      </div>
+    `;
+    return;
+  }
+
+  container.innerHTML = savedProjects.map(p => `
+    <div class="card" style="margin-bottom: 16px; border-left: 4px solid var(--accent);">
+      <div style="display: flex; justify-content: space-between; align-items: start;">
+        <div>
+          <h4 style="color: var(--dark); font-size: 1.1rem; margin-bottom: 4px;"><i class="fas fa-folder"></i> ${p.title}</h4>
+          <p style="color: var(--light); font-size: 0.85rem;">Saved: ${new Date(p.savedAt).toLocaleDateString()}</p>
+        </div>
+        <button class="action-btn" onclick="deleteProject(${p.id})" style="color: #FF6B6B;">
+          <i class="fas fa-trash"></i> Delete
+        </button>
+      </div>
+      <p style="color: var(--light); margin: 12px 0;">${p.description}</p>
+      <div>
+        <span class="tag">${p.difficulty}</span>
+        <span class="tag green">${p.noveltyScore}% Novel</span>
+      </div>
+    </div>
+  `).join('');
+}
+
+function deleteProject(id) {
+  if (confirm('Delete this project?')) {
+    savedProjects = savedProjects.filter(p => p.id !== id);
+    localStorage.setItem('pv_projects', JSON.stringify(savedProjects));
+    renderSavedProjects();
+    showToast('Project deleted');
+  }
+}
+
+// ========== ORIGINALITY CHECKER ==========
+async function checkOriginality() {
+  const title = document.getElementById('check-title').value.trim();
+  const desc = document.getElementById('check-desc').value.trim();
+  const dept = document.getElementById('check-dept').value.trim();
+
+  if (!title || !desc) {
+    alert('⚠️ Please fill in title and description');
+    return;
+  }
+
+  const result = document.getElementById('checker-result');
+  result.innerHTML = `
+    <div class="loading-text">
+      <div class="spinner" style="margin: 0 auto 20px;"></div>
+      Scanning global repositories...
+    </div>
+  `;
+
+  const prompt = `Check originality of: "${title}" - "${desc}"
+
+Return ONLY JSON:
+{
+  "uniquenessScore": 75,
+  "verdict": "Partially Original",
+  "similarProjects": ["Similar idea 1"],
+  "recommendations": ["How to improve"],
+  "riskLevel": "Medium"
+}`;
+
+  try {
+    const response = await callGroq([{ role: 'user', content: prompt }]);
+    if (!response) throw new Error('No response');
+
+    const data = JSON.parse(response.replace(/```json|```/g, '').trim());
+    const scoreColor = data.uniquenessScore >= 80 ? '#10B981' : data.uniquenessScore >= 60 ? '#FBBF24' : '#FF6B6B';
+
+    result.innerHTML = `
+      <div style="width: 100%;">
+        <div style="text-align: center; margin-bottom: 24px;">
+          <div style="font-size: 4rem; font-weight: 800; color: ${scoreColor}; font-family: var(--font-head);">${data.uniquenessScore}%</div>
+          <div style="font-size: 1.1rem; color: var(--dark); margin-top: 8px; font-weight: 600;">${data.verdict}</div>
+          <div style="font-size: 0.85rem; color: var(--light);">Risk: ${data.riskLevel}</div>
+        </div>
+
+        <div class="novelty-bar" style="margin-bottom: 20px;">
+          <div class="novelty-fill" style="width: ${data.uniquenessScore}%; background: ${scoreColor};"></div>
+        </div>
+
+        ${data.similarProjects && data.similarProjects.length > 0 ? `
+        <div class="result-section">
+          <h5>⚠️ Similar Projects</h5>
+          <ul>${data.similarProjects.map(p => `<li>${p}</li>`).join('')}</ul>
+        </div>
+        ` : '<div style="color: #10B981; margin-bottom: 16px;">✅ No direct matches found</div>'}
+
+        <div class="result-section">
+          <h5><i class="fas fa-lightbulb"></i> How to Improve</h5>
+          <ul>${(data.recommendations || []).map(r => `<li>${r}</li>`).join('')}</ul>
+        </div>
+      </div>
+    `;
+  } catch (e) {
+    result.innerHTML = `<div style="color: #FF6B6B;">❌ Error: ${e.message}</div>`;
+  }
+}
+
+// ========== GALLERY LOADING ==========
+function loadGalleryIdea(title, desc) {
+  document.getElementById('check-title').value = title;
+  document.getElementById('check-desc').value = desc;
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+  document.querySelector('[data-tab="checker"]').classList.add('active');
+  document.getElementById('checker').classList.add('active');
+  document.getElementById('tabs-container').scrollIntoView({ behavior: 'smooth' });
+}
+
+// ========== CHATBOT ==========
+function toggleChat() {
+  chatOpen = !chatOpen;
+  document.getElementById('chat-panel').classList.toggle('open', chatOpen);
+  document.getElementById('chat-fab').innerHTML = chatOpen ? '<i class="fas fa-times"></i>' : '<i class="fas fa-comments"></i>';
+}
+
+function addMessage(text, isUser = false) {
+  const container = document.getElementById('chat-messages');
+  const msg = document.createElement('div');
+  msg.className = `msg msg-${isUser ? 'user' : 'bot'}`;
+  msg.innerHTML = `<div class="msg-bubble">${text}</div>`;
+  container.appendChild(msg);
+  container.scrollTop = container.scrollHeight;
+}
+
+async function sendChatMsg() {
+  const input = document.getElementById('chat-input');
+  const text = input.value.trim();
+  
+  if (!text) return;
+  
+  input.value = '';
+  addMessage(text, true);
+
+  const result = await callGroq(
+    [{ role: 'user', content: text }],
+    'You are Nova, a friendly AI assistant helping students with project ideas. Be concise, helpful, and encouraging. Suggest specific ideas when asked.'
+  );
+
+  if (result) {
+    addMessage(result);
+  }
+}
+
+// ========== UTILITY ==========
+function showToast(msg) {
+  const toast = document.createElement('div');
+  toast.style.cssText = `
+    position: fixed;
+    bottom: 110px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--accent);
+    color: white;
+    padding: 12px 24px;
+    border-radius: 50px;
+    z-index: 10000;
+    font-weight: 600;
+    animation: slideUp 0.3s ease;
+  `;
+  toast.textContent = msg;
+  document.body.appendChild(toast);
+  setTimeout(() => toast.remove(), 3000);
+}
+
+// ========== TAB SWITCHING ==========
+document.addEventListener('DOMContentLoaded', () => {
+  renderSavedProjects();
+
+  // Tab functionality
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      const tabName = e.target.closest('.tab-btn').getAttribute('data-tab');
+      
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      e.target.closest('.tab-btn').classList.add('active');
+      
+      document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+      const content = document.getElementById(tabName);
+      if (content) content.classList.add('active');
+    });
+  });
+});
+</script>
+</body>
+</html>
